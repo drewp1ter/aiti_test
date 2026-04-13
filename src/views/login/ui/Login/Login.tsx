@@ -1,4 +1,4 @@
-import { AuthByPassword } from '@/widgets/auth-by-password'
+import { AuthByPassword } from '@/widgets/auth-by-password/ui'
 
 export const Login = () => {
 	return (

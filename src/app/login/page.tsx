@@ -1,3 +1,3 @@
-import { Login } from '@/views/login'
+import { Login } from '@/views/login/ui'
 
 export default Login
