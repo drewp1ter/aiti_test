@@ -1,0 +1,36 @@
+@use '../../../_styles/utils' as *;
+
+.table {
+	width: 100%;
+}
+
+.header {
+	color: #b2b3b9;
+	font-size: 1rem;
+	font-weight: 600;
+	height: rem(73);
+
+	.row {
+		border: none;
+	}
+}
+
+.body {
+}
+
+.row {
+	height: rem(71);
+	border-bottom: 1px solid #e2e2e2;
+	border-top: 1px solid #e2e2e2;
+}
+
+.cell {
+	padding: rem(11.5) rem(18);
+	text-align: center;
+}
+
+.head {
+	padding: rem(11.5) rem(18);
+  height: 100%;
+	text-align: center;
+}

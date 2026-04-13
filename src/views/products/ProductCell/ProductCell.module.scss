@@ -1,0 +1,14 @@
+@use '../../../_styles/utils' as *;
+
+.productCell {
+  display: flex;
+  align-items: center;
+  gap: rem(18); 
+  text-align: left;
+}
+
+.image {
+  background: #C4C4C4;
+  border-radius: 8px;
+  overflow: hidden;
+}

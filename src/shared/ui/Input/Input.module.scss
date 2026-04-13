@@ -1,0 +1,47 @@
+@use '../../../_styles/utils' as *;
+
+.wrapper {
+	display: flex;
+	align-items: center;
+	padding: rem(14) rem(16);
+	
+	&[data-variant-size='55'] {
+		height: rem(55);
+    gap: rem(14);
+	}
+
+	&[data-variant-size='48'] {
+		height: rem(48);
+    gap: rem(8);
+	}
+
+	&[data-variant='primary'] {
+		border-radius: rem(12);
+		background: #fff;
+		border: 1px solid #ededed;
+	}
+
+	&[data-variant='secondary'] {
+		border-radius: 8px;
+		background: #f3f3f3;
+		border: 1px solid #cfcfcf;
+	}
+}
+
+.input {
+	flex: 1;
+	border: none;
+	outline: none;
+	background: transparent;
+	font-size: rem(16);
+
+	&::placeholder {
+		color: gray;
+	}
+}
+
+.prefix,
+.suffix {
+	display: flex;
+	align-items: center;
+}

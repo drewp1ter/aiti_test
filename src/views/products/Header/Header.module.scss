@@ -1,0 +1,20 @@
+@use '../../../_styles/utils' as *;
+
+.header {
+  position: relative;
+  display: flex;
+  height: rem(100);
+  align-items: center;
+  background: #fff;
+  border-radius: 10px;
+  padding: 0 rem(30);
+  justify-content: center;
+}
+
+.title {
+  color: #000;
+  font-size: rem(24);
+  font-weight: 600;
+  position: absolute;
+  left: rem(30);
+}

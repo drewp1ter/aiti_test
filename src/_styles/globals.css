@@ -1,0 +1,36 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+html,
+body {
+	height: 100vh;
+}
+
+body {
+	color: #232323;
+}
+
+::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+::-webkit-scrollbar {
+	width: 0.7rem;
+	height: 1rem;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 9999px;
+  background-color: gray;
+}
+
+a {
+	color: #242EDB;
+	font-weight: 600;
+	text-decoration: underline;
+	line-height: 150%;
+}
+
+* {
+	box-sizing: border-box;
+}

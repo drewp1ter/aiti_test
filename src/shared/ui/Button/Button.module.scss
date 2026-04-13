@@ -1,0 +1,97 @@
+@use '../../../_styles/utils' as *;
+
+.button {
+	display: flex;
+	align-items: center;
+  justify-content: center;
+	cursor: pointer;
+	outline: none;
+	font-weight: 600;
+	transition:
+		background 0.3s,
+		box-shadow 0.3s;
+	
+  &[data-variant-size='27'] {
+		height: rem(27);
+		font-size: rem(12);
+	}
+
+	&[data-variant-size='30'] {
+		height: rem(30);
+		font-size: rem(13);
+	}
+
+	&[data-variant-size='42'] {
+		height: rem(42);
+		font-size: rem(14);
+	}
+
+	&[data-variant-size='54'] {
+		height: rem(54);
+		font-size: rem(18);
+	}
+
+	&[data-variant='primary'] {
+		letter-spacing: -1%;
+		padding: rem(8);
+    border: 1px solid #367aff;
+    border-radius: 12px;
+		background: #242edb;
+		color: #fff;
+		box-shadow:
+			0 8px 8px rgba(0, 0, 0, 0.03),
+			inset 0 -2px 0 1px rgba(0, 0, 0, 0.08);
+
+		&:hover {
+			background: #367aff;
+			box-shadow:
+				0 12px 12px rgba(0, 0, 0, 0.05),
+				inset 0 -2px 0 1px rgba(0, 0, 0, 0.1);
+		}
+	}
+
+	&[data-variant='secondary'] {
+    border: 1px solid #367aff;
+    		border-radius: 6px;
+		background: #242edb;
+		font-family: var(--font-cairo);
+		color: #ebf3ea;
+		letter-spacing: 0;
+    padding: rem(10) rem(20);
+
+    &:hover {
+			background: #367aff;
+			box-shadow:
+				0 12px 12px rgba(0, 0, 0, 0.05),
+				inset 0 -2px 0 1px rgba(0, 0, 0, 0.1);
+		}
+	}
+
+  &[data-variant='ghost'] {
+    background: transparent;
+    border: solid 1px #ECECEB;
+    border-radius: 8px;
+    padding: rem(10);
+		color: gray;
+
+    &:hover {
+      background: rgba(36, 46, 219, 0.1);
+    }
+  }
+}
+
+.prefix,
+.suffix {
+	display: flex;
+	align-items: center;
+}
+
+.prefix {
+  justify-self: start;
+	padding-right: rem(15);
+}
+
+.suffix {
+  justify-self: end;
+	padding-left: rem(15);
+}

@@ -1,0 +1,21 @@
+@use '../../../_styles/utils' as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  font-size: rem(18);
+  font-weight: 500;
+  line-height: rem(27);
+  gap: rem(6);
+
+  &[data-variant='secondary'] {
+    color: #9c9c9c;
+    font-size: 1rem;
+  }
+}
+
+.right {
+  flex-direction: row;
+  align-items: center;
+  gap: rem(10);
+}
