@@ -4,15 +4,17 @@ import styles from './Input.module.scss'
 
 interface Props extends ComponentProps<'input'> {
 	variantSize?: '48' | '55'
-	variant?: 'primary' | 'secondary'
+	variant?: 'primary' | 'secondary' | 'danger'
 }
 
 interface PrefixProps extends PropsWithChildren {
 	className?: string
+	onClick?: () => void
 }
 
 interface SuffixProps extends PropsWithChildren {
 	className?: string
+	onClick?: () => void
 }
 
 function InputRoot({ variantSize = '48', variant = 'primary', className, children, ...inputProps }: Props) {
@@ -33,12 +35,12 @@ function InputRoot({ variantSize = '48', variant = 'primary', className, childre
 	)
 }
 
-function InputPrefix({ children, className }: PrefixProps) {
-	return <div className={cn(styles.prefix, className)}>{children}</div>
+function InputPrefix({ children, className, onClick }: PrefixProps) {
+	return <div className={cn(styles.prefix, className)} onClick={onClick}>{children}</div>
 }
 
-function InputSuffix({ children, className }: SuffixProps) {
-	return <div className={cn(styles.suffix, className)}>{children}</div>
+function InputSuffix({ children, className, onClick }: SuffixProps) {
+	return <div className={cn(styles.suffix, className)} onClick={onClick}>{children}</div>
 }
 
 export const Input = Object.assign(InputRoot, {

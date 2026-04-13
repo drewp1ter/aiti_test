@@ -26,6 +26,13 @@
 		background: #f3f3f3;
 		border: 1px solid #cfcfcf;
 	}
+
+	&[data-variant='danger'] {
+		border-radius: rem(12);
+		background: #fff;
+		border: 1px solid #ef4444;
+		box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+	}
 }
 
 .input {

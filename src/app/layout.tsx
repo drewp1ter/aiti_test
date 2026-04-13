@@ -1,12 +1,13 @@
 import type { Metadata } from 'next'
 import cn from 'clsx'
 import { Inter, Cairo, Open_Sans, Roboto_Mono } from 'next/font/google'
+import { ToastContainer } from 'react-toastify'
 import '../_styles/globals.css'
 
 const inter = Inter({
 	variable: '--font-inter',
 	weight: ['400', '500', '600'],
-  display: 'swap',
+	display: 'swap',
 	subsets: ['latin', 'cyrillic'],
 })
 
@@ -41,11 +42,11 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode
 }>) {
-
 	return (
 		<html lang="ru">
 			<body className={cn(inter.className, cairo.variable, openSans.variable, robotoMono.variable, 'antialiased')}>
-					{children}
+				{children}
+				<ToastContainer position="top-center" theme="colored" />
 			</body>
 		</html>
 	)

@@ -1,10 +1,12 @@
 import React, { ComponentProps, PropsWithChildren } from 'react'
 import cn from 'clsx'
+import { Spinner } from '../Spinner'
 import styles from './Button.module.scss'
 
 interface Props extends ComponentProps<'button'> {
 	variantSize?: '27' | '30' | '42' | '54'
 	variant?: 'primary' | 'secondary' | 'ghost'
+	loading?: boolean
 }
 
 interface PrefixProps extends PropsWithChildren {
@@ -15,7 +17,14 @@ interface SuffixProps extends PropsWithChildren {
 	className?: string
 }
 
-export function ButtonRoot({ variantSize = '42', variant = 'primary', children, className, ...rest }: Props) {
+export function ButtonRoot({
+	variantSize = '42',
+	variant = 'primary',
+	loading = false,
+	children,
+	className,
+	...rest
+}: Props) {
 	const prefixChild = React.Children.toArray(children).find(
 		(child) => React.isValidElement(child) && child.type === InputPrefix
 	)
@@ -30,9 +39,15 @@ export function ButtonRoot({ variantSize = '42', variant = 'primary', children, 
 
 	return (
 		<button className={cn(styles.button, className)} {...rest} data-variant-size={variantSize} data-variant={variant}>
-			{prefixChild}
-			{childrenWithoutPrefixSuffix}
-			{suffixChild}
+			{loading ? (
+				<Spinner />
+			) : (
+				<>
+					{prefixChild}
+					{childrenWithoutPrefixSuffix}
+					{suffixChild}
+				</>
+			)}
 		</button>
 	)
 }
