@@ -1,0 +1,1 @@
+export { CreateProductModalHOC } from './CreateProductModalHOC'

@@ -1,0 +1,1 @@
+export { withCreateProductModal } from './withCreateProductModal'

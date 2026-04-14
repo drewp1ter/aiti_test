@@ -10,6 +10,7 @@ const eslintConfig = defineConfig([
       "@typescript-eslint/no-require-imports": "off",
       "@typescript-eslint/no-namespace": "off",
       "react-hooks/exhaustive-deps": "off",
+      "react-hooks/refs": "off",
     },
   },
   // Override default ignores of eslint-config-next.

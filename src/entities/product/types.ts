@@ -1,3 +1,5 @@
+import { CreateProduct } from "./ui/CreateProductModal"
+
 interface Dimensions {
 	width: number
 	height: number
@@ -42,4 +44,8 @@ export interface Product {
 	meta: Meta
 	thumbnail: string
 	images: string[]
+}
+
+export interface WithCreateProductModal {
+	openCreateProductModal: (callback: (product: CreateProduct) => void) => void
 }
