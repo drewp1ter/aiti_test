@@ -7,12 +7,14 @@ export namespace API {
       order?: 'asc' | 'desc'
       page?: number
       limit?: number
+      signal?: AbortSignal
     }
 
     export interface Search {
       query: string
       page?: number
       limit?: number
+      signal?: AbortSignal
     }
   }
 }

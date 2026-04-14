@@ -6,6 +6,7 @@ export async function fetchProducts({
 	order,
 	page = 1,
 	limit = 5,
+	signal,
 }: API.Request.Products): Promise<DTO.Response.Products> {
 	const skip = (page - 1) * limit
 	const res = await axiosInstance.get<DTO.Response.Products>('/products', {
@@ -15,6 +16,7 @@ export async function fetchProducts({
 			skip,
 			limit,
 		},
+		signal,
 	})
 
 	return res.data
@@ -24,6 +26,7 @@ export async function searchProducts({
 	query,
 	page = 1,
 	limit = 5,
+	signal,
 }: API.Request.Search): Promise<DTO.Response.Products> {
 	const skip = (page - 1) * limit
 	const res = await axiosInstance.get<DTO.Response.Products>('/products/search', {
@@ -32,6 +35,7 @@ export async function searchProducts({
 			skip,
 			limit,
 		},
+		signal,
 	})
 	return res.data
 }
