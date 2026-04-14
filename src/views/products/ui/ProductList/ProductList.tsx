@@ -68,97 +68,106 @@ export const ProductList = observer(function ProductList() {
 						Добавить
 					</Button>
 				</div>
-				<Table className="mt-10">
-					<Table.Header>
-						<Table.Row>
-							<Table.Head className="cursor-pointer">
-								<div className="flex items-center gap-5">
-									<Checkbox
-										checked={productsStore.allSelected}
-										onClick={productsStore.allSelected ? productsStore.deselectAll : productsStore.selectAll}
-									/>
-									<div onClick={handleHeadClick('title')}>Наименование</div>
-									{sortBy === 'title' && <Icon.CaretLeft className={order === 'asc' ? 'rotate-90' : 'rotate-270'} />}
-								</div>
-							</Table.Head>
-							<Table.Head className="cursor-pointer" onClick={handleHeadClick('brand')}>
-								<div className="flex items-center justify-center gap-1">
-									Вендор
-									<Icon.CaretLeft
-										className={cn({
-											'rotate-90': order === 'asc',
-											'rotate-270': order === 'desc',
-											'opacity-0': sortBy !== 'brand',
-										})}
-									/>
-								</div>
-							</Table.Head>
-							<Table.Head className="cursor-pointer" onClick={handleHeadClick('sku')}>
-								<div className="flex items-center justify-center gap-1">
-									Артикул
-									<Icon.CaretLeft
-										className={cn({
-											'rotate-90': order === 'asc',
-											'rotate-270': order === 'desc',
-											'opacity-0': sortBy !== 'sku',
-										})}
-									/>
-								</div>
-							</Table.Head>
-							<Table.Head className="cursor-pointer" onClick={handleHeadClick('rating')}>
-								<div className="flex items-center justify-center gap-1">
-									Оценка
-									<Icon.CaretLeft
-										className={cn({
-											'rotate-90': order === 'asc',
-											'rotate-270': order === 'desc',
-											'opacity-0': sortBy !== 'rating',
-										})}
-									/>
-								</div>
-							</Table.Head>
-							<Table.Head className="cursor-pointer" onClick={handleHeadClick('price')}>
-								<div className="flex items-center justify-center gap-1">
-									Цена, ₽
-									<Icon.CaretLeft
-										className={cn({
-											'rotate-90': order === 'asc',
-											'rotate-270': order === 'desc',
-											'opacity-0': sortBy !== 'price',
-										})}
-									/>
-								</div>
-							</Table.Head>
-							<Table.Head />
-						</Table.Row>
-					</Table.Header>
-					<Table.Body>
-						{productsStore.products.map((product) => (
-							<Table.Row key={product.id} isSelected={productsStore.isProductSelected(product.id)}>
-								<Table.Cell onClick={() => productsStore.selectProduct(product.id)}>
-									<ProductCell
-										title={product.title}
-										category={product.category}
-										image={product.images[0]}
-										checkbox={<Checkbox checked={productsStore.isProductSelected(product.id)} onChange={() => {}} />}
-									/>
-								</Table.Cell>
-								<Table.Cell className={styles.vendorCell}>{product.brand}</Table.Cell>
-								<Table.Cell>{product.sku}</Table.Cell>
-								<Table.Cell><Rating rating={product.rating} /></Table.Cell>
-								<Table.Cell><Price price={product.price} /></Table.Cell>
-								<Table.Cell>
-									<div className="flex justify-center gap-8">
-										<Button variant="primary" variantSize="27" className="rounded-full">
-											<Icon.Plus />
-										</Button>
-										<Icon.DotsThreeCircle />
+				<div className="relative mt-10">
+					{productsStore.state === 'loading' && (
+						<div className="absolute inset-0 z-10 flex items-center justify-center bg-white/70" />
+					)}
+					<Table>
+						<Table.Header>
+							<Table.Row>
+								<Table.Head className="cursor-pointer">
+									<div className="flex items-center gap-5">
+										<Checkbox
+											checked={productsStore.allSelected}
+											onClick={productsStore.allSelected ? productsStore.deselectAll : productsStore.selectAll}
+										/>
+										<div onClick={handleHeadClick('title')}>Наименование</div>
+										{sortBy === 'title' && <Icon.CaretLeft className={order === 'asc' ? 'rotate-90' : 'rotate-270'} />}
 									</div>
-								</Table.Cell>
+								</Table.Head>
+								<Table.Head className="cursor-pointer" onClick={handleHeadClick('brand')}>
+									<div className="flex items-center justify-center gap-1">
+										Вендор
+										<Icon.CaretLeft
+											className={cn({
+												'rotate-90': order === 'asc',
+												'rotate-270': order === 'desc',
+												'opacity-0': sortBy !== 'brand',
+											})}
+										/>
+									</div>
+								</Table.Head>
+								<Table.Head className="cursor-pointer" onClick={handleHeadClick('sku')}>
+									<div className="flex items-center justify-center gap-1">
+										Артикул
+										<Icon.CaretLeft
+											className={cn({
+												'rotate-90': order === 'asc',
+												'rotate-270': order === 'desc',
+												'opacity-0': sortBy !== 'sku',
+											})}
+										/>
+									</div>
+								</Table.Head>
+								<Table.Head className="cursor-pointer" onClick={handleHeadClick('rating')}>
+									<div className="flex items-center justify-center gap-1">
+										Оценка
+										<Icon.CaretLeft
+											className={cn({
+												'rotate-90': order === 'asc',
+												'rotate-270': order === 'desc',
+												'opacity-0': sortBy !== 'rating',
+											})}
+										/>
+									</div>
+								</Table.Head>
+								<Table.Head className="cursor-pointer" onClick={handleHeadClick('price')}>
+									<div className="flex items-center justify-center gap-1">
+										Цена, ₽
+										<Icon.CaretLeft
+											className={cn({
+												'rotate-90': order === 'asc',
+												'rotate-270': order === 'desc',
+												'opacity-0': sortBy !== 'price',
+											})}
+										/>
+									</div>
+								</Table.Head>
+								<Table.Head />
 							</Table.Row>
-						))}
-					</Table.Body>
-				</Table>
+						</Table.Header>
+						<Table.Body>
+							{productsStore.products.map((product) => (
+								<Table.Row key={product.id} isSelected={productsStore.isProductSelected(product.id)}>
+									<Table.Cell onClick={() => productsStore.selectProduct(product.id)}>
+										<ProductCell
+											title={product.title}
+											category={product.category}
+											image={product.images[0]}
+											checkbox={<Checkbox checked={productsStore.isProductSelected(product.id)} onChange={() => {}} />}
+										/>
+									</Table.Cell>
+									<Table.Cell className={styles.vendorCell}>{product.brand}</Table.Cell>
+									<Table.Cell>{product.sku}</Table.Cell>
+									<Table.Cell>
+										<Rating rating={product.rating} />
+									</Table.Cell>
+									<Table.Cell>
+										<Price price={product.price} />
+									</Table.Cell>
+									<Table.Cell>
+										<div className="flex justify-center gap-8">
+											<Button variant="primary" variantSize="27" className="rounded-full">
+												<Icon.Plus />
+											</Button>
+											<Icon.DotsThreeCircle />
+										</div>
+									</Table.Cell>
+								</Table.Row>
+							))}
+						</Table.Body>
+					</Table>
+				</div>
 				<div className={styles.footer}>
 					<div className={styles.pages}>
 						Показано{' '}
