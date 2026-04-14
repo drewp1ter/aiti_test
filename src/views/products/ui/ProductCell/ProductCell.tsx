@@ -9,9 +9,10 @@ interface Props {
 	title: string
 	category: string
 	className?: string
+	image: string
 }
 
-export function ProductCell({ title, category, className }: Props) {
+export function ProductCell({ title, category, className, image }: Props) {
 	return (
 		<div className={cn(styles.productCell, className)}>
 			<Checkbox />
@@ -20,10 +21,10 @@ export function ProductCell({ title, category, className }: Props) {
 				width={48}
 				height={48}
 				alt=''
-				src="https://cdn.dummyjson.com/product-images/groceries/kiwi/thumsbnail.webp"
+				src={image}
 			/>
-			<div className="flex flex-col justify-center gap-2.5">
-				<div className="text-base font-semibold text-black">{title}</div>
+			<div className="flex flex-col justify-center gap-1">
+				<div className="text-base font-semibold text-[#222]">{title}</div>
 				<div className="text-sm text-[#B2B3B9]">{category}</div>
 			</div>
 		</div>

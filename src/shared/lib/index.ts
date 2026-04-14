@@ -1,3 +1,5 @@
 export { cn } from './cn'
 export { axiosInstance } from './axios'
 export { isServer } from './isServer'
+export { useNumberUrlParam } from './useNumberUrlParam'
+export { useStringUrlParam } from './useStringUrlParam'
