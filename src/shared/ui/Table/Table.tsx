@@ -19,9 +19,10 @@ function TableBody({ className, ...props }: React.ComponentProps<'tbody'>) {
 	return <tbody className={cn(styles.body, className)} {...props} />
 }
 
-function TableRow({ className, ...props }: React.ComponentProps<'tr'>) {
+function TableRow({ className, isSelected, ...props }: React.ComponentProps<'tr'> & { isSelected?: boolean }) {
 	return (
 		<tr
+		  data-selected={isSelected}
 			className={cn(styles.row, className)}
 			{...props}
 		/>

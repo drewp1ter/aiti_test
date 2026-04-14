@@ -8,6 +8,8 @@ import { type API } from '../types'
 export class ProductsStore {
 	abortController: AbortController | null = null
 	products: Product[] = []
+	selectedProductIds: Set<ProductId> = new Set()
+	pageSize: number = 5
 	total: number = 0
 	state: 'idle' | 'loading' | 'error' = 'idle'
 
@@ -29,6 +31,7 @@ export class ProductsStore {
 
 		this.abortController = new AbortController()
 		params.signal = this.abortController.signal
+		params.limit = this.pageSize
 
 		try {
 			const res = await api.fetchProducts(params)
@@ -50,17 +53,21 @@ export class ProductsStore {
 		}
 	}
 
-	async searchProducts(params: API.Request.Search) {
+	async searchProducts(query: string, page: number) {
 		this.state = 'loading'
 		if (this.abortController) {
 			this.abortController.abort()
 		}
 
 		this.abortController = new AbortController()
-		params.signal = this.abortController.signal
 
 		try {
-			const res = await api.searchProducts(params)
+			const res = await api.searchProducts({
+			query,
+			page,
+			limit: this.pageSize,
+			signal: this.abortController.signal,
+		})
 			this.abortController = null
 			runInAction(() => {
 				this.products = res.products
@@ -77,5 +84,30 @@ export class ProductsStore {
 				toast.error(`Failed to search products: ${error.message}`)
 			}
 		}
+	}
+
+	selectProduct(productId: ProductId) {
+		console.log('Toggling selection for product ID:', productId)
+		if (this.selectedProductIds.has(productId)) {
+			this.selectedProductIds.delete(productId)
+		} else {
+			this.selectedProductIds.add(productId)
+		}
+	}
+
+	isProductSelected(productId: ProductId): boolean {
+		return this.selectedProductIds.has(productId)
+	}
+
+	selectAll() {
+		this.products.forEach((product) => this.selectedProductIds.add(product.id))
+	}
+
+	deselectAll() {
+		this.selectedProductIds.clear()
+	}
+
+	get allSelected(): boolean {
+		return this.products.length > 0 && this.selectedProductIds.size === this.products.length
 	}
 }

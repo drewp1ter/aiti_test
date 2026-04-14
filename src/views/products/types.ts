@@ -1,10 +1,13 @@
 import { Product } from '@/entities/product/types'
 
+export type SortBy = 'title' | 'category' | 'rating' | 'price' | 'sku' | 'brand' | ''
+export type Order = 'asc' | 'desc'
+
 export namespace API {
   export namespace Request {
     export interface Products {
-      sortBy?: 'title' | 'category' | 'rating' | 'price' | 'sku' | 'brand'
-      order?: 'asc' | 'desc'
+      sortBy?: SortBy
+      order?: Order
       page?: number
       limit?: number
       signal?: AbortSignal

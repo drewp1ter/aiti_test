@@ -12,7 +12,7 @@ export function useStringUrlParam<T extends string>(paramName: string, defaultVa
 
 	const setParamValue = useCallback(
 		(newValue: T) => {
-			const params = new URLSearchParams(searchParams.toString())
+			const params = new URLSearchParams(window.location.search)
 			if (newValue === '') {
 				params.delete(paramName)
 			} else {

@@ -1,6 +1,6 @@
 'use client'
 
-import { Checkbox } from '@/shared/ui'
+import { ReactNode } from 'react'
 import Image from 'next/image'
 import { cn } from '@/shared/lib'
 import styles from './ProductCell.module.scss'
@@ -10,12 +10,13 @@ interface Props {
 	category: string
 	className?: string
 	image: string
+	checkbox?: ReactNode
 }
 
-export function ProductCell({ title, category, className, image }: Props) {
+export function ProductCell({ title, category, className, image, checkbox }: Props) {
 	return (
 		<div className={cn(styles.productCell, className)}>
-			<Checkbox />
+			{checkbox}
 			<Image
         className={styles.image}
 				width={48}

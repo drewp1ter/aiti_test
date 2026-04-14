@@ -20,7 +20,7 @@ interface Meta {
 }
 
 export interface Product {
-	id: number
+	id: ProductId
 	title: string
 	description: string
 	category: string
