@@ -1,14 +1,14 @@
 'use client'
 
 import { useCallback, useState } from 'react'
-import { isServer } from './isServer'
+import { useSearchParams } from 'next/navigation'
 
 function isParamInvalid(param: number) {
 	return param < 1 || !Number.isInteger(param) || isNaN(param)
 }
 
 export function useNumberUrlParam(paramName: string, defaultValue: number): [number, (newPage: number) => void] {
-	const searchParams = isServer() ? new URLSearchParams() : new URLSearchParams(window.location.search)
+	const searchParams = useSearchParams()
 	const searchParam = searchParams.get(paramName)
 	const [param, setParam] = useState(() => {
 		const parsedParam = Number(searchParam)

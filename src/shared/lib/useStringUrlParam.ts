@@ -1,10 +1,10 @@
 'use client'
 
 import { useCallback, useState } from 'react'
-import { isServer } from './isServer'
+import { useSearchParams } from './useSearchParams'
 
 export function useStringUrlParam<T extends string>(paramName: string, defaultValue: T): [T, (newValue: T) => void] {
-	const searchParams = isServer() ? new URLSearchParams() : new URLSearchParams(window.location.search)
+	const searchParams = useSearchParams()
 	const searchParam = searchParams.get(paramName)
 	const [param, setParam] = useState(() => {
 		return (searchParam ?? defaultValue) as T

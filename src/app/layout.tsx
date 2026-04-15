@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import cn from 'clsx'
+import { headers } from 'next/headers'
 import { Inter, Cairo, Open_Sans, Roboto_Mono } from 'next/font/google'
 import { ToastContainer } from 'react-toastify'
+import { SearchParamsProvider } from '@/shared/ui/'
 import '../_styles/globals.css'
 
 const inter = Inter({
@@ -42,10 +44,13 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode
 }>) {
+	const headersList = await headers()
+	const searchParams = headersList.get('x-search-params') ?? ''
+
 	return (
 		<html lang="ru">
 			<body className={cn(inter.className, cairo.variable, openSans.variable, robotoMono.variable, 'antialiased')}>
-				{children}
+				<SearchParamsProvider searchParams={searchParams}>{children}</SearchParamsProvider>
 				<ToastContainer position="top-center" theme="colored" />
 			</body>
 		</html>
