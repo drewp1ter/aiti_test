@@ -23,17 +23,17 @@ function PaginationLink({ className, isActive, ...props }: PaginationLinkProps) 
 	return <button className={cn(styles.button, className)} data-active={isActive} {...props} />
 }
 
-function PaginationPrevious({ className }: { className?: string }) {
+function PaginationPrevious({ className, ...props }: React.ComponentProps<'div'>) {
 	return (
-		<div className={cn(styles.arrow, 'me-2.5', className)}>
+		<div className={cn(styles.arrow, 'me-2.5', className)} {...props}>
 			<Icon.CaretLeft />
 		</div>
 	)
 }
 
-function PaginationNext({ className }: { className?: string }) {
+function PaginationNext({ className, ...props }: React.ComponentProps<'div'>) {
 	return (
-		<div className={cn(styles.arrow, 'ms-2.5', className)}>
+		<div className={cn(styles.arrow, 'ms-2.5', className)} {...props}>
 			<Icon.CaretRight />
 		</div>
 	)

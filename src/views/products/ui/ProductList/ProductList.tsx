@@ -2,7 +2,7 @@
 
 import { useEffect, useCallback } from 'react'
 import cn from 'clsx'
-import { Table, Button, Icon, Checkbox, Pagination } from '@/shared/ui'
+import { Table, Button, Icon, Checkbox, Pagination, Loader } from '@/shared/ui'
 import { observer } from 'mobx-react-lite'
 import { toast } from 'react-toastify'
 import { Header } from '../Header'
@@ -70,6 +70,18 @@ export const ProductList = withCreateProductModal(
 			})
 		}
 
+		const handlePreviousPage = () => {
+			if (page > 1) {
+				setPage(page - 1)
+			}
+		}
+
+		const handleNextPage = () => {
+			if (page < Math.ceil(productsStore.total / productsStore.pageSize)) {
+				setPage(page + 1)
+			}
+		}
+
 		return (
 			<section className={styles.productList}>
 				<Header className="w-full" initialSearchQuery={query} onSearch={handleSearch} />
@@ -86,9 +98,11 @@ export const ProductList = withCreateProductModal(
 							Добавить
 						</Button>
 					</div>
-					<div className="relative mt-10">
+					<div className="relative mt-10 min-h-72">
 						{productsStore.state === 'loading' && (
-							<div className="absolute inset-0 z-10 flex items-center justify-center bg-white/70" />
+							<div className="absolute inset-0 z-10 flex items-center justify-center bg-white/70">
+								<Loader />
+							</div>
 						)}
 						<Table>
 							<Table.Header>
@@ -201,7 +215,7 @@ export const ProductList = withCreateProductModal(
 						<Pagination>
 							<Pagination.Content>
 								<Pagination.Item>
-									<Pagination.Previous />
+									<Pagination.Previous onClick={handlePreviousPage} />
 								</Pagination.Item>
 								{new Array(Math.ceil(Math.min(productsStore.total, 25) / productsStore.pageSize))
 									// пагинация упрощена
@@ -214,7 +228,7 @@ export const ProductList = withCreateProductModal(
 										</Pagination.Item>
 									))}
 								<Pagination.Item>
-									<Pagination.Next />
+									<Pagination.Next onClick={handleNextPage} />
 								</Pagination.Item>
 							</Pagination.Content>
 						</Pagination>
